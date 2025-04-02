@@ -30,7 +30,6 @@ gem "thruster", require: false
 # gem "image_processing", "~> 1.2"
 gem 'jwt'
 
-
 # Use Rack CORS for handling Cross-Origin Resource Sharing (CORS), making cross-origin Ajax possible
 gem "rack-cors"
 
