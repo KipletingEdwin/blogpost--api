@@ -1,14 +1,14 @@
 class PostsController < ApplicationController
-  before_action :authenticate_request, except: [:index, :show] # Protect write operations
+  before_action :authenticate_request, except: [:index, :show] 
 
   
-  # ✅ Get All Posts
+  #  Get All Posts
   def index
     posts = Post.all.order(created_at: :desc)
     render json: posts, status: :ok
   end
 
-  # ✅ Show a Single Post
+  #  Show a Single Post
   def show
     post = Post.find_by(id: params[:id])
     if post
@@ -18,11 +18,10 @@ class PostsController < ApplicationController
     end
   end
 
-  # ✅ Create a New Post
+  #  Create a New Post
   def create
-    puts "🔍 Received Post Params: #{params.inspect}"  # Debugging Line
+    puts "🔍 Received Post Params: #{params.inspect}" 
   
-    # ✅ Make sure we reference `content`, NOT `text`
     post = @current_user.posts.build(post_params)
   
     if post.save
@@ -34,9 +33,8 @@ class PostsController < ApplicationController
   
   
 
-  # ✅ Update a Post
+  #  Update a Post
   def update
-    # if post.user_id == current_user.id  #Check ownership
       
     post = current_user.posts.find_by(id: params[:id])
     if post&.update(post_params)
@@ -46,7 +44,7 @@ class PostsController < ApplicationController
     end
   end
 
-  # ✅ Delete a Post
+  #  Delete a Post
   def destroy
     post = current_user.posts.find_by(id: params[:id])
     if post&.destroy
@@ -58,7 +56,6 @@ class PostsController < ApplicationController
 
   private
 
-  # ✅ Strong Parameters
   def post_params
     params.require(:post).permit(:title, :content, :category, :isTrending)
   end

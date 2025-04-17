@@ -4,7 +4,6 @@ class AuthController < ApplicationController
   require 'json_web_token'
 
 
-  # ✅ Sign up new users
   def signup
     user = User.new(user_params)
     if user.save
@@ -15,7 +14,6 @@ class AuthController < ApplicationController
     end
   end
 
-  # ✅ Login action (Fixes the missing method)
   def login
     user = User.find_by(username: params[:username])
 

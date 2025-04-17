@@ -5,7 +5,7 @@ class ApplicationController < ActionController::API
   
         def authenticate_request
           header = request.headers["Authorization"]
-          token = header.split(" ").last if header # ✅ Extract Bearer token properly
+          token = header.split(" ").last if header 
       
           if token.present?
             begin
